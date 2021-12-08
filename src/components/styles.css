@@ -1,0 +1,40 @@
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.header h1 {
+    opacity: 0.7;
+    text-align: center;
+}
+
+.area {
+    border-radius: 5px;
+    margin: 10px 20px;
+}
+
+.board {
+    background-color: rgb(246, 248, 250);
+    border: 1px solid rgb(216, 222, 228);
+    display: flex;
+    flex-direction: row;
+    min-height: 400px;
+    width: 70%;
+}
+
+.trash-zone {
+    border: 1px dashed rgb(216, 222, 228);
+    width: 30%;
+}
+
+.note {
+    background-color: lightgreen;
+    height: fit-content;
+    margin: 10px;
+    min-height: 100px;
+    width: 200px;
+}
+
+.note span {
+    padding: 10px;
+}

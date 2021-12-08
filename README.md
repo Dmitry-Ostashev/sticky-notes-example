@@ -1,1 +1,1 @@
-# sticky-notes-example
+# Sticky Notes app example

@@ -10,5 +10,17 @@
     {
         "id": 2,
         "text": "Review all the issues in backlog"
+    },
+    {
+        "id": 3,
+        "text": "Prepare a meeting with PM"
+    },
+    {
+        "id":4,
+        "text": "Fix unstable tests"
+    },
+    {
+        "id": 5,
+        "text": "Pay taxes"
     }
 ]

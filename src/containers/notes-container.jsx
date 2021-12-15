@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Note } from '../components/note';
-import notesData from '../data/initial-data.json';
+import { Note } from './note';
+import { loadNotesData } from '../data/load-notes-data';
 
 export function NotesContainer () {
-    const [notes, setNotes] = useState(notesData);
+    const [notes, setNotes] = useState(loadNotesData());
+
+    const onNodeDragStart = ev => {
+
+    };
+
+    const onNodeDrag = ev => {
+
+    };
+
+    const onNodeDragEnd = ev => {
+
+    };
 
     return (
         <>
-            {notes.map(({ id, text }) => <Note key={id} text={text} />)}
+            {notes.map((noteProps) => <Note key={noteProps.id}
+                                            onNodeDragStart={onNodeDragStart}
+                                            onNodeDrag={onNodeDrag}
+                                            onNodeDragEnd={onNodeDragEnd} 
+                                            {...noteProps} />)}
         </>
     );
 }

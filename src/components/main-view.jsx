@@ -2,7 +2,6 @@ import React from 'react';
 import './styles.css';
 import { Board } from './board';
 import { TrashZone } from './trash-zone';
-import { Note } from './note';
 import { NotesContainer } from '../containers/notes-container';
 
 export function MainView () {

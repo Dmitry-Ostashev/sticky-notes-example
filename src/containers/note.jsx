@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { NoteComponent } from '../components/note-component';
 
 export function Note (props) {
@@ -8,21 +8,50 @@ export function Note (props) {
         top,
         left,
         zIndex,
-        onNodeDragStart,
-        onNodeDrag,
-        onNodeDragEnd
+        onLayoutChange
     } = props;
     
-    onDragStart = ev => onNodeDragStart(id);
+    const [state, setState] = useState({ top, left, zIndex });
+    const nodeRef           = useRef();
 
-    onDrag = ev => onNodeDrag(id);
+    const onDragStart = ev => {    
+        window.setTimeout(() => ev.target.style.visibility = 'hidden', 10);
+    };
 
-    onDragEnd = ev => onNodeDragEnd(id);
+    const onDragEnd = ev =>  {
+        ev.target.style.visibility = '';
+
+        const newTop  = ev.clientY;
+        const newLeft = ev.clientX;
+
+        const newState = { ...state };
+
+        setState({ ...newState, top: newTop, left: newLeft });
+    };
+
+    useEffect(() => {
+        const newState = { ...state };
+
+        const nodeElement = nodeRef.current;
+
+        if (state.top && state.left || !nodeElement)
+            return;
+
+        const { top, left } = nodeElement.getBoundingClientRect();
+
+        newState.top  = top;
+        newState.left = left;
+        
+        setState(newState);
+    }, [nodeRef]);
 
     return (
-        <NoteComponent text={text} 
+        <NoteComponent text={text}
+                       top={state.top}
+                       left={state.left}
+                       nodeRef={nodeRef}
                        onDragStart={onDragStart}
-                       onDrag={onDrag}
+                       nodeRef={nodeRef}
                        onDragEnd={onDragEnd}/>
     );
 }

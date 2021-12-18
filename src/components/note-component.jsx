@@ -1,14 +1,15 @@
 import React from 'react';
 
-export function NoteComponent ({ text, top, left, nodeRef, onDragStart, onDrag, onDragEnd }) {
+export function NoteComponent ({ text, id, top, left, zIndex, noteRef, onDragStart, onDrag, onDragEnd }) {
     const style = {
-        position: top && left && 'fixed' || '',
+        position: top && left ? 'fixed' : '',
         top,
-        left
+        left,
+        zIndex
     };
 
     return (
-        <div className="note" style={style} ref={nodeRef} draggable={true} onDragStart={onDragStart} onDrag={onDrag} onDragEnd={onDragEnd}>
+        <div key={id} className="note" style={style} ref={noteRef} draggable={true} onDragStart={onDragStart} onDrag={onDrag} onDragEnd={onDragEnd}>
             <span>{text}</span>
         </div>
     );

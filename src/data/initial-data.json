@@ -1,26 +1,8 @@
-[
-    {
-        "id": 0,
-        "text": "Make code review tomorrow"
-    },
-    {
-        "id": 1,
-        "text": "Ask for new cooler"
-    },
-    {
-        "id": 2,
-        "text": "Review all the issues in backlog"
-    },
-    {
-        "id": 3,
-        "text": "Prepare a meeting with PM"
-    },
-    {
-        "id":4,
-        "text": "Fix unstable tests"
-    },
-    {
-        "id": 5,
-        "text": "Pay taxes"
-    }
-]
+{
+    "0": { "text": "Make code review tomorrow" },
+    "1": { "text": "Ask for new cooler" },
+    "2": { "text": "Review all the issues in backlog" },
+    "3": { "text": "Prepare a meeting with PM" },
+    "4": { "text": "Fix unstable tests" },
+    "5": { "text": "Pay taxes" }
+}

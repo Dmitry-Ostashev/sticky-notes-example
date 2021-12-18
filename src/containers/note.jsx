@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { NoteComponent } from '../components/note-component';
 
 export function Note (props) {
@@ -10,48 +10,47 @@ export function Note (props) {
         zIndex,
         onLayoutChange
     } = props;
-    
-    const [state, setState] = useState({ top, left, zIndex });
-    const nodeRef           = useRef();
 
-    const onDragStart = ev => {    
+    const noteRef           = useRef();
+    const notePosition      = useRef({});
+
+    const onDragStart = ev => { 
+        const { top, left } = noteRef.current.getBoundingClientRect();
+        
+        notePosition.current.top = ev.clientY - top;
+        notePosition.current.left = ev.clientX - left;
+        
         window.setTimeout(() => ev.target.style.visibility = 'hidden', 10);
     };
 
     const onDragEnd = ev =>  {
+        ev.preventDefault();
         ev.target.style.visibility = '';
 
-        const newTop  = ev.clientY;
-        const newLeft = ev.clientX;
+        const newTop  = ev.clientY - notePosition.current.top;
+        const newLeft = ev.clientX - notePosition.current.left;
 
-        const newState = { ...state };
-
-        setState({ ...newState, top: newTop, left: newLeft });
+        onLayoutChange(id, newTop, newLeft, true);
     };
 
     useEffect(() => {
-        const newState = { ...state };
+        const noteElement = noteRef.current;
 
-        const nodeElement = nodeRef.current;
-
-        if (state.top && state.left || !nodeElement)
-            return;
-
-        const { top, left } = nodeElement.getBoundingClientRect();
-
-        newState.top  = top;
-        newState.left = left;
+        const { x, y } = noteElement.getBoundingClientRect();
         
-        setState(newState);
-    }, [nodeRef]);
+        onLayoutChange(id, y, x);
+    }, []);
+
+    console.log(top, left);
 
     return (
         <NoteComponent text={text}
-                       top={state.top}
-                       left={state.left}
-                       nodeRef={nodeRef}
+                       id={id}
+                       top={top}
+                       left={left}
+                       zIndex={zIndex}
+                       noteRef={noteRef}
                        onDragStart={onDragStart}
-                       nodeRef={nodeRef}
                        onDragEnd={onDragEnd}/>
     );
 }

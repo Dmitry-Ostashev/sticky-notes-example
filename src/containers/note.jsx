@@ -33,15 +33,20 @@ export function Note (props) {
         onLayoutChange(id, newTop, newLeft, true);
     };
 
+    const onClick = ev => {
+        onLayoutChange(id, top, left, true);
+    };
+
     useEffect(() => {
         const noteElement = noteRef.current;
+
+        if (top || left)
+            return;
 
         const { x, y } = noteElement.getBoundingClientRect();
         
         onLayoutChange(id, y, x);
     }, []);
-
-    console.log(top, left);
 
     return (
         <NoteComponent text={text}
@@ -51,6 +56,7 @@ export function Note (props) {
                        zIndex={zIndex}
                        noteRef={noteRef}
                        onDragStart={onDragStart}
-                       onDragEnd={onDragEnd}/>
+                       onDragEnd={onDragEnd}
+                       onClick={onClick}/>
     );
 }

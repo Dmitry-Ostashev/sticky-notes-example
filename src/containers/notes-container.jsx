@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Note } from './note';
 import { loadNotesData } from '../data/load-notes-data';
 
@@ -47,7 +47,10 @@ export function NotesContainer ({ boardRef }) {
 
     return (
         <>
-            {Object.entries(notes).map(([id, noteProps], index) => <Note key={id} id={id} onLayoutChange={onLayoutChange} {...noteProps} />)}
+            {Object.entries(notes).map(([id, noteProps], index) => <Note key={id} 
+                                                                         id={id}
+                                                                         onLayoutChange={onLayoutChange} 
+                                                                         {...noteProps} />)}
         </>
     );
 }

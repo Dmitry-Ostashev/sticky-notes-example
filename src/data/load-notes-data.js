@@ -5,6 +5,11 @@ export function loadNotesData () {
 
     if (!notesData)
         notesData = initialData;
+
+    Object.entries(notesData).forEach(([id, note], index) => {
+        if (note.zIndex === void 0)
+            note.zIndex = index;
+    });
     
     return notesData;
 }

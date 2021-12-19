@@ -28,6 +28,10 @@
     width: 30%;
 }
 
+.button {
+    border: 1px dashed rgb(216, 222, 228);
+}
+
 .note {
     background-color: lightgreen;
     border: 1px solid grey;
